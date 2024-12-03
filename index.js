@@ -32,7 +32,7 @@ else if(result == "Player"){
   return `You win! ${playerSelection} beats ${computerSelection}`
 }
 else{
-  retunr `You loose! ${computerSelection} beats ${playerSelection}` 
+  return `You loose! ${computerSelection} beats ${playerSelection}` 
 }
 }
 
@@ -53,13 +53,31 @@ function getPlayerChoice() {
 }
 
 function game() {
+  let scorePlayer = 0;
+  let scoreComputer = 0;
   for (let i = 0; i < 5; i++){
-    const playerSelection = playerChoice();
+    const playerSelection = getPlayerChoice();
     const computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+    console.log("---------");
+    if(checkWinner(playerSelection, computerSelection) == "Player"){
+      scorePlayer++;
+    } 
+    else if(checkWinner (playerSelection, computerSelection) == "Compurer") {
+      scoreComputer++;
+    } 
   }
-  
-}
+  console.log("Game over")
+  if(scorePlayer > scoreComputer){
+    console.log("You win!")
+  }
+  else if(scorePlayer < scoreComputer){
+    console.log("You loose!");
+  }
+  else {
+    console.log("We Tie!")
+  }
+} 
 
 game(); 
 
